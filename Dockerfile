@@ -2,8 +2,8 @@ FROM python:3.8.6-slim-buster
 
 ARG ROCKSDB_DEPENDENCIES="g++ git make"
 
-RUN apt update \
-  && apt install -y $ROCKSDB_DEPENDENCIES \
+RUN apt-get update \
+  && apt-get install -y $ROCKSDB_DEPENDENCIES \
   && rm -rf /var/lib/apt/lists/*
 
 RUN cd tmp \
@@ -13,4 +13,4 @@ RUN cd tmp \
   && make install-shared INSTALL_PATH=/usr
 
 RUN rm -rf /tmp/*
-RUN apt autoremove -y --purge $ROCKSDB_DEPENDENCIES
+RUN apt-get autoremove -y --purge $ROCKSDB_DEPENDENCIES
